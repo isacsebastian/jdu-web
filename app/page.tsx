@@ -8,6 +8,18 @@ import { StaggerTestimonials } from "@/components/ui/stagger-testimonials"
 import { motion } from "framer-motion"
 import SmoothScrollHero from "@/components/ui/smooth-scroll-hero"
 import Chatbot from "../components/chatbot"
+import {
+  InfiniteBrandsSlider,
+  NikeSVG,
+  AdidasSVG,
+  PumaSVG,
+  UnderArmourSVG,
+  NewBalanceSVG,
+  AsicsSVG,
+} from "@/components/ui/infinite-brands-slider"
+import AchievementsSection from "@/components/achievements-section"
+import ValuesSection from "@/components/values-section"
+import AthleteSpotlightSection from "@/components/athlete-spotlight-section"
 
 export default function Page() {
   const missionStatement =
@@ -43,10 +55,40 @@ export default function Page() {
     },
   ]
 
+  const brands = [
+    { name: "Nike", svg: <NikeSVG /> },
+    { name: "Adidas", svg: <AdidasSVG /> },
+    { name: "Puma", svg: <PumaSVG /> },
+    { name: "Under Armour", svg: <UnderArmourSVG /> },
+    { name: "New Balance", svg: <NewBalanceSVG /> },
+    { name: "Asics", svg: <AsicsSVG /> },
+  ]
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <HeroSection />
+
+      <section className="relative py-16 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold tracking-wide text-gray-900 mb-4">
+              TRUSTED BY RUNNERS WORLDWIDE
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Partnering with the world's leading athletic brands to bring you the best running experience
+            </p>
+          </motion.div>
+
+          <InfiniteBrandsSlider brands={brands} speed={30} className="py-8" />
+        </div>
+      </section>
 
       {/* Mission Statement Section with Grid Background */}
       <section id="mission" className="relative min-h-screen flex items-center justify-center py-20 bg-white">
@@ -111,6 +153,15 @@ export default function Page() {
           <StaggerTestimonials />
         </div>
       </section>
+
+      {/* Achievements Section */}
+      <AchievementsSection />
+
+      {/* Values Section */}
+      <ValuesSection />
+
+      {/* Athlete Spotlight Section */}
+      <AthleteSpotlightSection />
 
       {/* Smooth Scroll Hero with CTA Overlay */}
       <section id="join" className="relative">
